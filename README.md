@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Overview
+This Angular-based dashboard application dynamically renders various data visualizations based on user-selected metrics. The goal is to simulate real-time data analytics using a mock JSON data file while maintaining responsive design and interactive user experience.
+
+### Tech Stack:
+- **Angular 14+**
+- **NgRx** for state management
+- **Angular Material** (optional, used for styling and UI components)
+- **ngx-charts** for rendering bar, line, and pie charts
+Setup Instructions
+
+### Prerequisites
+- Node.js v16+
+- Angular CLI v14+
+
+### Installation
+```bash
+npm install
+

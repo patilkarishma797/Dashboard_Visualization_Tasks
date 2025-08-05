@@ -1,0 +1,45 @@
+<!-- PIE CHART -->
+
+<div class="chart-row" *ngIf="chart.type === 'pie'">
+    <mat-card class="chart-card">
+        <mat-card-header>
+            <mat-card-subtitle>{{ chart.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <ngx-charts-pie-chart [view]="view" [results]="chart.data" [legend]="true" [labels]="true" [doughnut]="true" [scheme]="chartColors">
+            </ngx-charts-pie-chart>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!-- LINE CHART -->
+<div class="chart-row" *ngIf="chart.type === 'line'">
+    <mat-card class="chart-card">
+        <mat-card-header>
+            <mat-card-title>{{ chart.title }}</mat-card-title>
+            <mat-card-subtitle>{{ chart.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <ngx-charts-line-chart [view]="view" [results]="chart.data" [legend]="true" [xAxis]="true" [yAxis]="true" [autoScale]="true" [scheme]="chartColors">
+            </ngx-charts-line-chart>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!-- BAR CHART -->
+<div class="chart-row" *ngIf="chart.type === 'bar'">
+    <mat-card class="chart-card">
+        <mat-card-header>
+            <mat-card-title>{{ chart.title }}</mat-card-title>
+            <mat-card-subtitle>{{ chart.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <ngx-charts-bar-vertical [view]="view" [results]="chart.data" [legend]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="'Category'" [yAxisLabel]="'Value'" [scheme]="chartColors">
+            </ngx-charts-bar-vertical>
+        </mat-card-content>
+    </mat-card>
+    <!-- AREA (WAVES) CHART -->
+
+
+
+</div>

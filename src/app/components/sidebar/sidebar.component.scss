@@ -1,0 +1,55 @@
+.sidenav-container {
+    height: 100vh;
+}
+
+.sidenav {
+    background-color: #1e1e2f;
+    color: white;
+    width: 240px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    &.collapsed {
+        width: 70px;
+        mat-icon {
+            margin: auto;
+        }
+    }
+}
+
+.user-info {
+    text-align: center;
+    padding: 22px 7px;
+    margin-left: -57px;
+    .avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 2px solid #9575cd;
+    }
+    p {
+        margin: 0;
+        font-weight: bold;
+        font-size: 14px;
+        color: #eeeeee;
+    }
+}
+
+mat-nav-list a {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    mat-icon {
+        margin-right: 12px;
+        color: #eeeeee;
+        margin-bottom: -5px;
+    }
+    span {
+        transition: opacity 0.2s;
+        color: #eeeeee;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+}

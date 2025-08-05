@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill" style="width: 300px; margin-bottom: 20px;">
+    <mat-label>Select Metric</mat-label>
+    <mat-select (selectionChange)="onMetricChange($event)">
+        <mat-option *ngFor="let metric of metrics" [value]="metric.id">
+            {{ metric.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

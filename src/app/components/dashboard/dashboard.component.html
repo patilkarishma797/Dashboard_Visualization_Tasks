@@ -1,0 +1,98 @@
+<div class="dashboard-container">
+    <!-- Vertical Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Main Dashboard Area -->
+    <main class="main-dashboard">
+        <h2>Interactive Data Visualization Dashboard</h2>
+        <ng-container *ngIf="metrics$ | async as metrics">
+            <app-metric-selector [metrics]="metrics" (metricSelected)="onMetricSelected($event)">
+            </app-metric-selector>
+        </ng-container>
+        <mat-form-field appearance="fill" style="width: 300px; margin-bottom: 20px;">
+            <mat-label>Select Chart Color(s)</mat-label>
+            <mat-select multiple [(value)]="selectedColors" (selectionChange)="onColorChange()">
+                <mat-option *ngFor="let color of availableColors" [value]="color">
+                    {{ color }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 300px; margin-bottom: 20px; margin-left: 20px;">
+            <mat-label>Select Month</mat-label>
+            <mat-select [(value)]="selectedMonth" (selectionChange)="onMonthChange()">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option *ngFor="let month of availableMonths" [value]="month.value">
+                    {{ month.label }}
+                </mat-option>
+            </mat-select>
+            <button *ngIf="selectedMonth" mat-icon-button matSuffix (click)="selectedMonth = null; onMonthChange()">
+    <mat-icon>clear</mat-icon>
+  </button>
+        </mat-form-field>
+
+
+        <div class="card-container">
+            <mat-card class="stat-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Revenue</div>
+                        <div class="card-value">
+                            Online: ₹{{ revenueBreakdown.online }} / Retail: ₹{{ revenueBreakdown.retail }}
+                        </div>
+                    </div>
+                    <mat-icon class="card-icon" color="primary">attach_money</mat-icon>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Sales</div>
+                        <div class="card-value">
+                            A: {{ salesBreakdown.a }} / B: {{ salesBreakdown.b }} / C: {{ salesBreakdown.c }}
+                        </div>
+                    </div>
+                    <mat-icon class="card-icon" color="accent">shopping_cart</mat-icon>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">User Growth</div>
+                        <div class="card-value">{{ userGrowthTotal }}</div>
+                    </div>
+                    <mat-icon class="card-icon" color="warn">group</mat-icon>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Total</div>
+                        <div class="card-value">₹ {{ grandTotal }}</div>
+                    </div>
+                    <mat-icon class="card-icon" color="primary">keyboard_return</mat-icon>
+                </div>
+            </mat-card>
+        </div>
+
+
+        <!-- Pie Charts Group -->
+        <ng-container *ngIf="charts$ | async as charts">
+            <div class="pie-charts-group" *ngIf="hasPieCharts(charts)">
+                <ng-container *ngFor="let chart of charts">
+                    <app-chart-wrapper *ngIf="chart.type === 'pie'" [colors]="selectedColors" [chart]="chart"></app-chart-wrapper>
+                </ng-container>
+            </div>
+
+            <ng-container *ngFor="let chart of charts">
+                <app-chart-wrapper *ngIf="chart.type !== 'pie'" [colors]="selectedColors" [chart]="chart"></app-chart-wrapper>
+            </ng-container>
+        </ng-container>
+
+
+
+
+    </main>
+</div>

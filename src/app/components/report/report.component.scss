@@ -1,0 +1,47 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #1a1a2e;
+    color: white;
+    flex-shrink: 0;
+}
+
+.main-dashboard {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background-color: #f4f6f8;
+}
+
+.chart-wrapper,
+.table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .main-dashboard {
+        padding: 1rem;
+    }
+    ngx-charts-bar-vertical,
+    ngx-charts-line-chart {
+        width: 100% !important;
+    }
+}

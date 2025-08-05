@@ -1,0 +1,5 @@
+[
+    { "id": "sales", "name": "Sales" },
+    { "id": "engagement", "name": "User Engagement" },
+    { "id": "performance", "name": "Performance Stats" }
+]

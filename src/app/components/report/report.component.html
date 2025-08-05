@@ -1,0 +1,64 @@
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <app-sidebar class="sidebar"></app-sidebar>
+
+    <!-- Main Content -->
+    <div class="main-dashboard">
+        <mat-tab-group>
+            <!-- Chart Report -->
+            <mat-tab label="Chart Report">
+                <div class="chart-wrapper">
+                    <ngx-charts-bar-vertical [view]="[700, 400]" [scheme]="colorScheme" [results]="barChartData" [xAxis]="true" [yAxis]="true" [legend]="true" [showDataLabel]="true">
+                    </ngx-charts-bar-vertical>
+                </div>
+            </mat-tab>
+
+            <!-- Trend Report -->
+            <mat-tab label="Trend Report">
+                <div class="chart-wrapper">
+                    <mat-slide-toggle [(ngModel)]="showMovingAvg">Show Moving Average</mat-slide-toggle>
+                    <ngx-charts-line-chart [view]="[700, 400]" [scheme]="colorScheme" [results]="lineChartData" [legend]="true" [xAxis]="true" [yAxis]="true" [autoScale]="true">
+                    </ngx-charts-line-chart>
+                </div>
+            </mat-tab>
+
+            <!-- Table Report -->
+            <mat-tab label="Table Report">
+                <div class="table-wrapper">
+                    <button mat-raised-button color="primary" (click)="exportToExcel()">Export to Excel</button>
+
+                    <table mat-table [dataSource]="tableData" class="mat-elevation-z8" style="width: 100%">
+                        <!-- Columns -->
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef>Date</th>
+                            <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="metricA">
+                            <th mat-header-cell *matHeaderCellDef>Metric A</th>
+                            <td mat-cell *matCellDef="let element">{{ element.metricA }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="metricB">
+                            <th mat-header-cell *matHeaderCellDef>Metric B</th>
+                            <td mat-cell *matCellDef="let element">{{ element.metricB }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="growth">
+                            <th mat-header-cell *matHeaderCellDef>Growth %</th>
+                            <td mat-cell *matCellDef="let element">{{ element.growth }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="channel">
+                            <th mat-header-cell *matHeaderCellDef>Channel</th>
+                            <td mat-cell *matCellDef="let element">{{ element.channel }}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
